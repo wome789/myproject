@@ -1,0 +1,68 @@
+<#include "/baseaddress.html" />
+
+<@override name="head">
+<style>
+	.layui-input-block {
+	    margin-left: 20%;
+	    min-height: 36px;
+	}
+</style>
+</@override>
+
+<@override name="content">
+<form class="layui-form" action="" id="form">
+	<div class="contents">
+	
+		<input hidden="hidden" name="id" value="${pic.id!}"/>
+		<input hidden="hidden" id="typeNameValue" value="${pic.picTypeId!}"/>
+		<div hidden="hidden" id="urlValue">${pic.url!}</div>
+		
+		<div class="layui-form-item">
+			<label class="mylabelInPage">名称</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入图片名称" class="layui-input" value="${pic.name!}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelInPage">图片分类</label>
+			<div class="layui-input-block">
+				<select name="picTypeId" lay-verify="required" lay-search="" id="picType" value="">
+					<option value="">请选择分类</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="mylabelInPage">跳转链接</label>
+			<div class="layui-input-block">
+				<input type="text" name="jumpUrl" lay-verify="required" autocomplete="off" placeholder="请输入跳转链接" class="layui-input" value="${pic.jumpUrl!}">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="mylabelInPage">选择图片:</label>
+			<div class="layui-input-block">
+				<button type="button" class="layui-btn" id="picture">
+					<i class="layui-icon">&#xe67c;</i>选择图片
+				</button>
+				<div >
+					<img style="display: none" height="35px" width="345px" id="pictureImg" src="">
+					<input hidden="hidden" id="pictureImgId" />
+				</div>
+			</div>
+		</div>
+		
+		<div style="padding-left: 40%;margin-top: 5%;display: none;">
+			<div>
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="*" id="submitBtn">立即提交</button>
+			</div>
+		</div>
+		
+	</div>
+	
+</form>
+
+<script charset="utf-8" type="text/javascript" src="${baseAddress}/js/console/picture/update.js"></script>
+
+</@override>
+<@extends name="*/base.html"/>

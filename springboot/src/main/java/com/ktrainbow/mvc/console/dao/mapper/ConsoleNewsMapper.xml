@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ktrainbow.mvc.console.dao.ConsoleNewsMapper" >
+
+    <resultMap id="BaseResultMap" type="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="info" property="info" jdbcType="LONGVARCHAR" />
+        <result column="state" property="state" jdbcType="TINYINT" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, title, info, state, status, create_time, modify_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_news
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="findBySelective" resultMap="BaseResultMap" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_news
+        where 1=1
+        <if test="id != null and id != '' ">			
+	        	AND id =  #{id,jdbcType=INTEGER}
+		 </if>
+        <if test="title != null and title != '' ">			
+	        	AND title =  #{title,jdbcType=VARCHAR}
+		 </if>
+		<if test="info != null and info !='' ">			
+	        	AND info =  #{info,jdbcType=VARCHAR}
+		 </if>
+		<if test="state != null and state !='' ">			
+	        	AND state =  #{state,jdbcType=VARCHAR}
+		 </if>
+		<if test="status != null and status != '' ">			
+	        	AND status =  #{status,jdbcType=VARCHAR}
+		 </if>
+		<if test="createTime != null and createTime != '' ">			
+	        	AND create_time = #{createTime,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="modifyTime != null and modifyTime != '' ">			
+	        	AND modify_time = #{modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		order by 
+	   	id desc
+    </select>
+    
+    <select id="findByPage" resultMap="BaseResultMap" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_news
+        where 1=1
+        <if test="param.id != null and param.id != '' ">			
+	        	AND id =  #{param.id,jdbcType=INTEGER}
+		 </if>
+        <if test="param.title != null and param.title != '' ">			
+	        	AND title like CONCAT('%',#{param.title,jdbcType=VARCHAR},'%')  
+		 </if>
+		<if test="param.info!= null and param.info !='' ">			
+		        	AND info =  #{param.info,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.state != null and param.state !='' ">			
+		        	AND state =  #{param.state,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.status != null and param.status != '' ">			
+		        	AND status =  #{param.status,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.createTime != null and param.createTime != '' ">			
+		        	AND create_time = #{param.createTime,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="param.modifyTime != null and param.modifyTime != '' ">			
+		        	AND modify_time = #{param.modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		order by
+	   	id desc
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from console_news
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        insert into console_news (id, title, info, 
+            state, status, create_time, 
+            modify_time)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{info,jdbcType=LONGVARCHAR}, 
+            #{state,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{modifyTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        insert into console_news
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="info != null" >
+                info,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                #{info,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=TINYINT},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        update console_news
+        <set >
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                info = #{info,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ktrainbow.mvc.console.model.ConsoleNews" >
+        update console_news
+        set title = #{title,jdbcType=VARCHAR},
+            info = #{info,jdbcType=LONGVARCHAR},
+            state = #{state,jdbcType=TINYINT},
+            status = #{status,jdbcType=TINYINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

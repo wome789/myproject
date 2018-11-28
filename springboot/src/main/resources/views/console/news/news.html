@@ -1,0 +1,38 @@
+<#include "/baseaddress.html" />
+
+<@override name="head">
+
+</@override>
+
+<@override name="content">
+	<div class="contents">
+		
+		<div class="demoTable">
+			<div class="layui-inline">
+					<input class="layui-input" name="id" id="titleParam" placeholder="请输入标题中关键字" autocomplete="off">
+			</div>
+			<button class="layui-btn" data-type="reload" id="search">搜索</button>
+			<button class="layui-btn" id="updatePic" style="float: right;margin-right: 5%;"><i class="layui-icon">&#xe654;</i>添加新闻</button>
+		</div>
+		
+	
+		<table class="layui-hide" id="table" lay-filter="tableFilter"></table>
+		
+	</div>
+	
+<script id="stateBtn" type="text/html">
+  {{#  if(d.state == 1){ }}
+	<button class="layui-btn layui-btn-xs"  id="show" lay-event="show">显示</button>
+  {{#  } else { }}
+	<button class="layui-btn layui-btn-danger layui-btn-xs" id="noshow" lay-event="notShow">不显示</button>
+  {{#  } }}
+</script>
+
+<script type="text/html" id="barDemo">
+	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script charset="utf-8" type="text/javascript" src="${baseAddress}/js/console/news/news.js"></script>
+</@override>
+<@extends name="*/base.html"/>

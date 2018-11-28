@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ktrainbow.mvc.console.dao.ConsoleWebSetMapper" >
+
+    <resultMap id="BaseResultMap" type="com.ktrainbow.mvc.console.model.ConsoleWebSet" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="important_key" property="importantKey" jdbcType="VARCHAR" />
+        <result column="info" property="info" jdbcType="LONGVARCHAR" />
+        <result column="logo" property="logo" jdbcType="VARCHAR" />
+        <result column="ico" property="ico" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, url, important_key, info, logo, ico, status, create_time, modify_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_web_set
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from console_web_set
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.ktrainbow.mvc.console.model.ConsoleWebSet" >
+        insert into console_web_set (id, name, url, 
+            important_key, info, logo, 
+            ico, status, create_time, 
+            modify_time)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+            #{importantKey,jdbcType=VARCHAR}, #{info,jdbcType=LONGVARCHAR}, #{logo,jdbcType=VARCHAR}, 
+            #{ico,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{modifyTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.ktrainbow.mvc.console.model.ConsoleWebSet" >
+        insert into console_web_set
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="importantKey != null" >
+                important_key,
+            </if>
+            <if test="info != null" >
+                info,
+            </if>
+            <if test="logo != null" >
+                logo,
+            </if>
+            <if test="ico != null" >
+                ico,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="importantKey != null" >
+                #{importantKey,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                #{info,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="logo != null" >
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="ico != null" >
+                #{ico,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ktrainbow.mvc.console.model.ConsoleWebSet" >
+        update console_web_set
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="importantKey != null" >
+                important_key = #{importantKey,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                info = #{info,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="logo != null" >
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="ico != null" >
+                ico = #{ico,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ktrainbow.mvc.console.model.ConsoleWebSet" >
+        update console_web_set
+        set name = #{name,jdbcType=VARCHAR},
+            url = #{url,jdbcType=VARCHAR},
+            important_key = #{importantKey,jdbcType=VARCHAR},
+            info = #{info,jdbcType=LONGVARCHAR},
+            logo = #{logo,jdbcType=VARCHAR},
+            ico = #{ico,jdbcType=VARCHAR},
+            status = #{status,jdbcType=TINYINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

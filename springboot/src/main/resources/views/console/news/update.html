@@ -1,0 +1,48 @@
+<#include "/baseaddress.html" />
+
+<@override name="head">
+<style>
+	.layui-input-block {
+	    margin-left: 20%;
+	    min-height: 36px;
+	}
+</style>
+</@override>
+
+<@override name="content">
+<form class="layui-form" action="" id="form">
+	<div class="contents">
+	
+		<input hidden="hidden" name="id" value="${news.id!}"/>
+		
+		<div class="layui-form-item">
+			<label class="mylabelInPage">标题</label>
+			<div class="layui-input-block">
+				<input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input" value="${news.title!}">
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="mylabelInPage">文章内容</label>
+			<div class="layui-input-block">
+				<div id="info">
+			    </div>
+			</div>
+		</div>
+		
+		<div hidden="hidden" id="infoValue">${news.info!}</div>
+		 
+		<div style="padding-left: 40%;margin-top: 5%;display: none;">
+			<div>
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="*" id="submitBtn">立即提交</button>
+			</div>
+		</div>
+		
+	</div>
+	
+</form>
+
+<script charset="utf-8" type="text/javascript" src="${baseAddress}/js/console/news/update.js"></script>
+
+</@override>
+<@extends name="*/base.html"/>

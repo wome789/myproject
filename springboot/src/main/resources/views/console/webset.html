@@ -1,0 +1,76 @@
+<#include "/baseaddress.html" />
+
+<@override name="head">
+
+</@override>
+
+<@override name="content">
+<form class="layui-form" action="" id="form">
+	<div class="contents">
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站名称</label>
+			<div class="myinput">
+				<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入网站名称" class="layui-input" value="${webSet.name!}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站网址</label>
+			<div class="myinput">
+				<input type="text" name="url" lay-verify="required" autocomplete="off" placeholder="请输入网站网址" class="layui-input" value="${webSet.url!}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站关键字</label>
+			<div class="myinput">
+				<input type="text" name="importantKey" lay-verify="required" autocomplete="off" placeholder="请输入网站关键字" class="layui-input" value="${webSet.importantKey!}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站描述</label>
+			<div class="myinput">
+				<textarea lay-verify="required" placeholder="请输入内容" name="info" class="layui-textarea">${webSet.info!}</textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站Logo(大小为252X75)</label>
+			<div class="myinput">
+				<button type="button" class="layui-btn" id="logo">
+					<i class="layui-icon">&#xe67c;</i>上传图片
+				</button>
+				<div>
+					<img style="display: none" height="75px" width="252px" id="logoImg" src="">
+					<input hidden="hidden" id="logoImgId" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="mylabelTwo">网站图标（图标必须是ico格式的,大小为48x48）</label>
+			<div class="myinput">
+				<button type="button" class="layui-btn" id="ico">
+					<i class="layui-icon">&#xe67c;</i>上传图片
+				</button>
+				<div >
+					<img style="display: none" height="48" width="48" id="icoImg" src="">
+					<input hidden="hidden" id="icoImgId" />
+				</div>
+			</div>
+		</div>
+		
+		<div hidden="hidden" id="icoValue">${webSet.ico!}</div>
+		<div hidden="hidden" id="logoValue">${webSet.logo!}</div>
+		
+		<div style="padding-left: 40%;margin-top: 5%;">
+			<div>
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="*" id="submitBtn">立即提交</button>
+				<button style="margin-left: 50px" type="reset" class="layui-btn layui-btn-normal ">重置</button>
+			</div>
+		</div>
+		
+	</div>
+	
+</form>
+
+<script charset="utf-8" type="text/javascript" src="${baseAddress}/js/console/webset.js"></script>
+</@override>
+<@extends name="*/base.html"/>

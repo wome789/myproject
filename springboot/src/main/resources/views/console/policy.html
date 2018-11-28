@@ -1,0 +1,45 @@
+<#include "/baseaddress.html" />
+
+<@override name="head">
+
+<style>
+	.layui-input-block {
+	    margin-left: 200px;
+	    min-height: 36px;
+	}
+</style>
+
+</@override>
+
+<@override name="content">
+<form class="layui-form" action="" id="form">
+	<div class="contents">
+		<div class="layui-form-item">
+			<label class="mylabelOne">标题</label>
+			<div class="layui-input-block">
+				<input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input" value="${policy.title!}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="mylabelOne">内容</label>
+			<div class="layui-input-block">
+				<div id="info">
+			    </div>
+			</div>
+		</div>
+		
+		<div style="padding-left: 40%;margin-top: 5%;">
+			<div>
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="*" id="submitBtn">立即提交</button>
+				<button style="margin-left: 50px" type="reset" class="layui-btn layui-btn-normal ">重置</button>
+			</div>
+		</div>
+		
+		<div hidden="hidden" id="infoValue">${policy.info!}</div>
+		
+	</div>
+	
+</form>
+<script charset="utf-8" type="text/javascript" src="${baseAddress}/js/console/policy.js"></script>
+</@override>
+<@extends name="*/base.html"/>

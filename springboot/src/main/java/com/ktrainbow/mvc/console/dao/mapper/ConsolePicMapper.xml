@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ktrainbow.mvc.console.dao.ConsolePicMapper" >
+
+    <resultMap id="BaseResultMap" type="com.ktrainbow.mvc.console.model.ConsolePic" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="pic_type_id" property="picTypeId" jdbcType="VARCHAR" />
+        <result column="pic_type_name" property="picTypeName" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="jump_url" property="jumpUrl" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, pic_type_id, pic_type_name, url, jump_url, status, create_time, modify_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_pic
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="findBySelective" resultMap="BaseResultMap" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_pic
+        where 1=1
+        <if test="id != null and id != '' ">			
+	        	AND id =  #{id,jdbcType=INTEGER}
+		 </if>
+        <if test="name != null and name != '' ">			
+	        	AND name =  #{name,jdbcType=VARCHAR}
+		 </if>
+		<if test="picTypeId != null and picTypeId !='' ">			
+		        	AND pic_type_id =  #{picTypeId,jdbcType=VARCHAR}
+		 </if>
+		<if test="picTypeName != null and picTypeName !='' ">			
+		        	AND pic_type_name =  #{picTypeName,jdbcType=VARCHAR}
+		 </if>
+		<if test="url != null and url != '' ">			
+		        	AND url =  #{url,jdbcType=VARCHAR}
+		 </if>
+		<if test="jumpUrl != null and jumpUrl != '' ">			
+		        	AND jump_url =  #{jumpUrl,jdbcType=VARCHAR}
+		 </if>
+		 <if test="param.status != null and param.status != '' ">			
+		        	AND status = #{param.status,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="createTime != null and createTime != '' ">			
+		        	AND create_time = #{createTime,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="modifyTime != null and modifyTime != '' ">			
+		        	AND modify_time = #{modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		order by 
+	   	id desc
+    </select>
+    
+    <select id="findByPage" resultMap="BaseResultMap" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        select 
+        <include refid="Base_Column_List" />
+        from console_pic
+        where 1=1
+        <if test="param.id != null and param.id != '' ">			
+	        	AND id =  #{param.id,jdbcType=INTEGER}
+		 </if>
+        <if test="param.name != null and param.name != '' ">			
+	        	AND name =  #{param.name,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.picTypeId != null and param.picTypeId !='' ">			
+		        	AND pic_type_id =  #{param.picTypeId,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.picTypeName != null and param.picTypeName !='' ">			
+		        	AND pic_type_name =  #{param.picTypeName,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.url != null and param.url != '' ">			
+		        	AND url =  #{param.url,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.jumpUrl != null and param.jumpUrl != '' ">			
+		        	AND jump_url =  #{param.jumpUrl,jdbcType=VARCHAR}
+		 </if>
+		<if test="param.status != null and param.status != '' ">			
+		        	AND status = #{param.status,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="param.createTime != null and param.createTime != '' ">			
+		        	AND create_time = #{param.createTime,jdbcType=TIMESTAMP}
+		 </if>
+		<if test="param.modifyTime != null and param.modifyTime != '' ">			
+		        	AND modify_time = #{param.modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		order by 
+	   	id desc
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from console_pic
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        insert into console_pic (id, name, pic_type_id, 
+            pic_type_name, url, jump_url, 
+            status, create_time, modify_time
+            )
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{picTypeId,jdbcType=VARCHAR}, 
+            #{picTypeName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{jumpUrl,jdbcType=VARCHAR}, 
+            #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        insert into console_pic
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="picTypeId != null" >
+                pic_type_id,
+            </if>
+            <if test="picTypeName != null" >
+                pic_type_name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="jumpUrl != null" >
+                jump_url,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="picTypeId != null" >
+                #{picTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="picTypeName != null" >
+                #{picTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="jumpUrl != null" >
+                #{jumpUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        update console_pic
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="picTypeId != null" >
+                pic_type_id = #{picTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="picTypeName != null" >
+                pic_type_name = #{picTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="jumpUrl != null" >
+                jump_url = #{jumpUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.ktrainbow.mvc.console.model.ConsolePic" >
+        update console_pic
+        set name = #{name,jdbcType=VARCHAR},
+            pic_type_id = #{picTypeId,jdbcType=VARCHAR},
+            pic_type_name = #{picTypeName,jdbcType=VARCHAR},
+            url = #{url,jdbcType=VARCHAR},
+            jump_url = #{jumpUrl,jdbcType=VARCHAR},
+            status = #{status,jdbcType=TINYINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
